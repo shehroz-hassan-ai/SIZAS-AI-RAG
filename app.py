@@ -33,6 +33,16 @@ EXAMPLES = [
 
 st.set_page_config(page_title="SIZAS AI | RAG PDF Assistant", page_icon="📑", layout="wide")
 
+# ---------------------------------------------------------------- login
+if not st.user.is_logged_in:
+    st.title("SIZAS AI")
+    st.write("Please sign in to continue.")
+    st.button("Sign in with Google", on_click=st.login)
+    st.stop()
+
+st.sidebar.write(f"Signed in as {st.user.name}")
+st.sidebar.button("Log out", on_click=st.logout)
+
 try:
     validate_config()
 except ValueError as e:
